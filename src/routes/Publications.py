@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template, jsonify
 from src.services import PublicationsService
 from src.entities.Publication import Publication
 
+
 publications_route = Blueprint('publications', __name__)
 
 
@@ -50,3 +51,9 @@ def udpate():
 def delete(id):
     dto = PublicationsService.delete(id)
     return dto
+
+
+# Api para obtener una publicacion
+@publications_route.route('/get/<id>', methods=['GET'])
+def get(id):
+    return PublicationsService.get(id)

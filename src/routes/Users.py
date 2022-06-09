@@ -8,9 +8,9 @@ users_route = Blueprint('users', __name__)
 @users_route.route('/new', methods=['POST'])
 def add():
     dict_user = {
-        'email': request.form['email'],
-        'password': request.form['password'],
-        'name': request.form['name']}
+        'email': request.json['email'],
+        'password': request.json['password'],
+        'name': request.json['name']}
 
     UsersServices.add(dict_user)
     return 'save'
@@ -22,14 +22,14 @@ def update():
     command = {
         'id': request.json['id'],
         'email': request.json['email'],
-        'password': request.form['password'],
-        'name': request.form['name']}
+        'password': request.json['password'],
+        'name': request.json['name']}
 
-    UsersServices.add(command)
+    UsersServices.update(command)
     return 'ok'
 
 
-# Api para obtener todas las publicaciones
+# Api para obtener todos los usuarios
 @users_route.route('/')
 def get_all():
     dto = UsersServices.get_all()
@@ -37,7 +37,21 @@ def get_all():
 
 
 # Api para eliminar un usuario
-@users_route.route('/delete<id>', methods=['GET'])
+@users_route.route('/delete/<id>', methods=['GET'])
 def delete(id):
     UsersServices.delete(id)
     return 'ok'
+
+
+# Api para obtener un usuario por id
+@users_route.route('/get/<id>', methods=['GET'])
+def get(id):
+    return UsersServices.get(id)
+
+
+@users_route.route('/auth', methods=['POST'])
+def login():
+    command = {
+        'email': request.json['email'],
+        'password': request.json['password']}
+    return str(UsersServices.login(command))

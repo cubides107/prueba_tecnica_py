@@ -1,10 +1,14 @@
 from src.entities.User import User
 from src.database.db import db
+from werkzeug.security import check_password_hash as checkph
+from werkzeug.security import generate_password_hash as genph
 
 
 # Servicio para agregar un usuario
 def add(request):
-    new_user = User(request['email'], request['password'], request['name'])
+    encrypt_password = genph(request['password'])
+    new_user = User(request['email'], encrypt_password, request['name'])
+
     db.session.add(new_user)
     db.session.commit()
 
@@ -40,3 +44,9 @@ def delete(id):
     db.session.delete(user)
     db.session.commit()
     return 'ok'
+
+
+def login(command):
+    user = User.query.filter_by(email=command['email']).first()
+    print(f"hola {user.password}")
+    return checkph(user.password, command['password'])

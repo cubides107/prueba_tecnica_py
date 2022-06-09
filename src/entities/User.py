@@ -24,10 +24,10 @@ class User(db.Model):
         self.password = password
         self.name = name
 
-#
-def to_json(self):
-    return {
-        'id': self.id,
-        'email': self.email,
-        'name': self.name
-    }
+    # Convertir a objeto para retornar
+    def to_json(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name
+        }
