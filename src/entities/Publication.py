@@ -23,3 +23,18 @@ class Publication(db.Model):
         self.description = description
         self.priority = priority
         self.time = datetime.now()
+
+    def change_attributes(self, title, description, priority: PriorityEnum, time):
+        self.title = title
+        self.description = description
+        self.priority = priority
+        self.time = time
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'priority': self.priority,
+            'time': self.time
+        }
