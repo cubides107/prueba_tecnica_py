@@ -2,6 +2,7 @@ from src.database.db import db
 import uuid
 
 
+# Clase usuario
 class User(db.Model):
     __tablename__ = 'Users'
 
@@ -17,7 +18,13 @@ class User(db.Model):
         self.password = password
         self.name = name
 
+    # Cambiar atributos del usuario
+    def change_attributes(self, email, password, name):
+        self.email = email
+        self.password = password
+        self.name = name
 
+#
 def to_json(self):
     return {
         'id': self.id,
