@@ -1,5 +1,5 @@
 from flask import Flask
-from src.routes import Users
+from src.routes import Users, Publications
 from config import config
 from flask_sqlalchemy import SQLAlchemy
 from src.database.db import db
@@ -16,6 +16,7 @@ if __name__ == '__main__':
     app.config.from_object(config['development'])
     # Blueprint
     app.register_blueprint(Users.users_route, url_prefix='/api/users')
+    app.register_blueprint(Publications.publications_route, url_prefix='/api/publications')
 
     # config database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/PruebaTecnica'

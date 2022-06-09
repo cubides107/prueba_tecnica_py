@@ -1,7 +1,5 @@
 from flask import Blueprint, request, render_template
 from src.services import Users
-from src.database.db import db
-from src.entities.User import User
 
 users_route = Blueprint('users', __name__)
 
