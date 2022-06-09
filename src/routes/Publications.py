@@ -50,3 +50,9 @@ def udpate():
 def delete(id):
     dto = PublicationsService.delete(id)
     return dto
+
+
+# Api para obtener una publicacion
+@publications_route.route('/get/<id>', methods=['GET'])
+def get(id):
+    return PublicationsService.get(id)
