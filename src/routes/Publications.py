@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template, jsonify
 from src.services import PublicationsService
 from src.entities.Publication import Publication
 
+
 publications_route = Blueprint('publications', __name__)
 
 

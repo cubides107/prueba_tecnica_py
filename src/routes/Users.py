@@ -47,3 +47,11 @@ def delete(id):
 @users_route.route('/get/<id>', methods=['GET'])
 def get(id):
     return UsersServices.get(id)
+
+
+@users_route.route('/auth', methods=['POST'])
+def login():
+    command = {
+        'email': request.json['email'],
+        'password': request.json['password']}
+    return str(UsersServices.login(command))
