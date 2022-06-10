@@ -1,6 +1,7 @@
 from src.entities.User import User
 from src.entities.Publication import Publication
 from src.entities.StatusEnum import StatusEnum
+from datetime import  datetime
 
 from src.database.db import db
 
@@ -27,8 +28,8 @@ def get(id):
 
 
 # Servicio para obtener todas las publicaciones
-def get_all():
-    publications = Publication.query.all()
+def get_all(id_user):
+    publications = Publication.query.filter_by(user_id=id_user).all()
     publications_aux = []
 
     for publication in publications:

@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, jsonify
 from src.routes import Users, Publications
 from config import config
 from flask_sqlalchemy import SQLAlchemy
 from src.database.db import db
 from auth import login_manager
+from flasgger import Swagger
 
 app = Flask(__name__)
 
@@ -21,6 +22,7 @@ if __name__ == '__main__':
     app.register_blueprint(Users.users_route, url_prefix='/api/users')
     app.register_blueprint(Publications.publications_route, url_prefix='/api/publications')
 
+    swagger = Swagger(app)
     # config database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/PruebaTecnica'
     SQLALCHEMY_TRACK_MODIFICATIONS = False

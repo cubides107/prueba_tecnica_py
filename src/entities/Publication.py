@@ -30,11 +30,14 @@ class Publication(db.Model):
         self.priority = priority
         self.time = time
 
+    def calculate_time(self):
+        return datetime.now() - self.time
+
     def to_json(self):
         return {
             'id': self.id,
             'title': self.title,
             'description': self.description,
             'priority': self.priority,
-            'time': self.time
+            'time': str(self.calculate_time())
         }
