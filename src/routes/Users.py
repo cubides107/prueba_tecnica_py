@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
 from src.services import UsersServices
+from flask_login import login_user
+from flask_login import login_required
 
 users_route = Blueprint('users', __name__)
 
@@ -45,6 +47,7 @@ def delete(id):
 
 # Api para obtener un usuario por id
 @users_route.route('/get/<id>', methods=['GET'])
+@login_required
 def get(id):
     return UsersServices.get(id)
 
@@ -54,4 +57,5 @@ def login():
     command = {
         'email': request.json['email'],
         'password': request.json['password']}
-    return str(UsersServices.login(command))
+    user = UsersServices.login(command)
+    return str(login_user(user))

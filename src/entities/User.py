@@ -1,9 +1,10 @@
 from src.database.db import db
+from flask_login import UserMixin
 import uuid
 
 
 # Clase usuario
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'Users'
 
     id = db.Column(db.VARCHAR(36), primary_key=True)

@@ -48,5 +48,5 @@ def delete(id):
 
 def login(command):
     user = User.query.filter_by(email=command['email']).first()
-    print(f"hola {user.password}")
-    return checkph(user.password, command['password'])
+    checkph(user.password, command['password'])
+    return user
