@@ -1,9 +1,14 @@
 # Prueba_Tecnica_py
 Prueba Tecnica
 
-# 1.Creacion Entorno Virtual
+# 1.Creacion Entorno Virtual y Archivo .env
 
 Ejecutar el comando ```python -m venv venv``` en la carpeta raiz del proyecto
+
+cree un nuevo archivo con la extension .env en la carpeta raiz y coloque la llaver secreta en el
+```
+SECRET_KEY=VWdsubvgYzQxTCbUwfSO7c8WUO7pAj7K
+```
 
 # 2. Activacion del Entorno Virtual
 
@@ -20,10 +25,16 @@ pip install -r requirements.txt
 ```
 
 # 4. Crear Base de Datos 
-Cree un base de datos nueva en postgres  y en el archivo app.py cambie la cadena de conexion 
+Cree una nueva base de datos en postgres y cambien la cadena de conexion en el archivo ```app.py```
 
 ```
 postgresql://postgres:admin@localhost:5432/PruebaTecnica
+```
+
+Ejecute en la carpeta raiz del proyecto para iniciar la aplicacion y que se creen las tablas
+
+```
+python .\app.py
 ```
 
 # 5. Creacion del Primer Usuario en el sistema
