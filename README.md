@@ -46,6 +46,12 @@ INSERT INTO public."Users"(
  # Docs Api en Postman
  https://documenter.getpostman.com/view/20043771/Uz5NiD7n
  
+ Para ejecutar las Apis seleccione Run in Postman en la parte superior derecha
+
+ ![image](https://user-images.githubusercontent.com/80919045/173138671-b6e12772-43fe-4ce0-b94e-45f6af0140bc.png)
  
+ Importe la configuracion en su workspace de Postman(Escritorio) 
  
+ Listo!!!
+
 
