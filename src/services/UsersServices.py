@@ -50,3 +50,5 @@ def login(command):
     user = User.query.filter_by(email=command['email']).first()
     checkph(user.password, command['password'])
     return user
+
+

@@ -1,10 +1,11 @@
+from src.entities.User import User
 from src.entities.Publication import Publication
 from src.entities.StatusEnum import StatusEnum
 
 from src.database.db import db
 
 
-# Servicion para agregar una publicacion
+# Servicio para agregar una publicacion
 def add(dict_publication):
     new_publication = Publication(
         dict_publication['title'],
@@ -12,6 +13,8 @@ def add(dict_publication):
         dict_publication['priority'])
 
     new_publication.status = StatusEnum.CREATED.value
+    user = User.query.get(dict_publication['id'])
+    user.publications.append(new_publication)
 
     db.session.add(new_publication)
     db.session.commit()

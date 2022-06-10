@@ -30,7 +30,7 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
 
-    # Configuracion de Autenticacion
+    # Configuracion para Autenticacion
     login_manager.init_app(app)
 
     # Error handler

@@ -1,24 +1,29 @@
 from flask import Blueprint, request, render_template, jsonify
 from src.services import PublicationsService
-from src.entities.Publication import Publication
-
+from flask_login import login_required
+from flask_login import current_user
 
 publications_route = Blueprint('publications', __name__)
 
 
 # Api para crear una publicacion
 @publications_route.route('/new', methods=['POST'])
+@login_required
 def add_publication():
-    dict_publication = {'title': request.json['title'],
-                        'description': request.json['description'],
-                        'priority': request.json['priority']}
+    id = current_user.id
+    dict_publication = {
+        'id': id,
+        'title': request.json['title'],
+        'description': request.json['description'],
+        'priority': request.json['priority']}
 
     PublicationsService.add(dict_publication)
-    return jsonify('ok')
+    return jsonify(id)
 
 
 # Api para obtener una publicacion por id
 @publications_route.route('/update/<id>')
+@login_required
 def get_publication(id):
     dto = PublicationsService.get(id)
     return dto
@@ -26,6 +31,7 @@ def get_publication(id):
 
 # Api para obtener todas las publicaciones
 @publications_route.route('/')
+@login_required
 def get_all():
     dto = PublicationsService.get_all()
     return jsonify(dto)
@@ -33,6 +39,7 @@ def get_all():
 
 # Api para actualizar una publicacion
 @publications_route.route('/update', methods=['POST'])
+@login_required
 def udpate():
     command = {
         'id': request.json['id'],
@@ -48,6 +55,7 @@ def udpate():
 
 # Api para eliminar un publicacion
 @publications_route.route('/delete/<id>', methods=['GET'])
+@login_required
 def delete(id):
     dto = PublicationsService.delete(id)
     return dto
@@ -55,5 +63,6 @@ def delete(id):
 
 # Api para obtener una publicacion
 @publications_route.route('/get/<id>', methods=['GET'])
+@login_required
 def get(id):
     return PublicationsService.get(id)
