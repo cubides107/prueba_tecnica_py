@@ -11,6 +11,7 @@ def add(request):
 
     db.session.add(new_user)
     db.session.commit()
+    return 0
 
 
 # Servicio para obtener un usuario por el id
@@ -32,10 +33,11 @@ def get_all():
 
 # Servicio para actualizar un usuario
 def update(request):
+    encrypt_password = genph(request['password'])
     user = User.query.get(request['id'])
-    user.change_attributes(request['email'], request['password'], request['name'])
+    user.change_attributes(request['email'], encrypt_password, request['name'])
     db.session.commit()
-    return 'ok'
+    return 0
 
 
 # Servicio para eliminar un usuario
@@ -43,7 +45,7 @@ def delete(id):
     user = User.query.get(id)
     db.session.delete(user)
     db.session.commit()
-    return 'ok'
+    return 0
 
 
 def login(command):

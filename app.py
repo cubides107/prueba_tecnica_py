@@ -18,11 +18,12 @@ if __name__ == '__main__':
     # Config
     app.config.from_object(config['development'])
 
-    # Blueprint
+    # Blueprints
     app.register_blueprint(Users.users_route, url_prefix='/api/users')
     app.register_blueprint(Publications.publications_route, url_prefix='/api/publications')
 
     swagger = Swagger(app)
+
     # config database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:admin@localhost:5432/PruebaTecnica'
     SQLALCHEMY_TRACK_MODIFICATIONS = False

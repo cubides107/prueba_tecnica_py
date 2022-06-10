@@ -7,16 +7,15 @@ users_route = Blueprint('users', __name__)
 
 
 # Api para crear un nuevo usuarios
-
 @users_route.route('/new', methods=['POST'])
+@login_required
 def add():
     dict_user = {
         'email': request.json['email'],
         'password': request.json['password'],
         'name': request.json['name']}
 
-    UsersServices.add(dict_user)
-    return 'save'
+    return jsonify(UsersServices.add(dict_user))
 
 
 # Api para actualizar un usuario
@@ -29,8 +28,7 @@ def update():
         'password': request.json['password'],
         'name': request.json['name']}
 
-    UsersServices.update(command)
-    return 'ok'
+    return jsonify(UsersServices.update(command))
 
 
 # Api para obtener todos los usuarios
@@ -45,8 +43,7 @@ def get_all():
 @users_route.route('/delete/<id>', methods=['GET'])
 @login_required
 def delete(id):
-    UsersServices.delete(id)
-    return 'ok'
+    return jsonify(UsersServices.delete(id))
 
 
 # Api para obtener un usuario por id
@@ -70,4 +67,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return 'ok'
+    return jsonify(0)

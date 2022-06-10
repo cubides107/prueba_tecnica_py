@@ -19,6 +19,7 @@ def add(dict_publication):
 
     db.session.add(new_publication)
     db.session.commit()
+    return 0
 
 
 # Servicio para obtener una publicacion por id
@@ -27,7 +28,7 @@ def get(id):
     return publication.to_json()
 
 
-# Servicio para obtener todas las publicaciones
+# Servicio para obtener todas las publicaciones por el usuario
 def get_all(id_user):
     publications = Publication.query.filter_by(user_id=id_user).all()
     publications_aux = []
@@ -43,7 +44,7 @@ def update(request):
     publication = Publication.query.get(request['id'])
     publication.change_attributes(request['title'], request['description'], request['priority'], request['time'])
     db.session.commit()
-    return 'ok'
+    return 0
 
 
 # Servicio para eliminar una publicacion
@@ -51,4 +52,4 @@ def delete(id):
     publication = Publication.query.get(id)
     db.session.delete(publication)
     db.session.commit()
-    return 'ok'
+    return 0
