@@ -39,7 +39,7 @@ python .\app.py
 
 # 5. Creacion del Primer Usuario en el sistema
 
-Ejecute el comando de insercion en la tabla de usuarios
+Ejecute el comando de inserción en la tabla de usuarios
 ```
 INSERT INTO public."Users"(
 	id, email, password, name)
