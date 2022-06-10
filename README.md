@@ -3,7 +3,7 @@ Prueba Tecnica
 
 # 1.Creacion Entorno Virtual
 
-Ejecutar el comando ```python -m venv``` en la carpeta raiz del proyecto
+Ejecutar el comando ```python -m venv venv``` en la carpeta raiz del proyecto
 
 # 2. Activacion del Entorno Virtual
 
